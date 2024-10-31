@@ -1,0 +1,7 @@
+INDEX VERSION 1.134+C:\Users\UTENTE\Desktop\Magistrale\SoftwareTesting\.metadata\.plugins\org.eclipse.jdt.core
+1482720475.index
+296504735.index
+1271079401.index
+1865797976.index
+2304507358.index
+3556427009.index
