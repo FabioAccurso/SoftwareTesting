@@ -2,7 +2,11 @@ package test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
+
+import java.lang.reflect.Executable;
+
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThrows;
 
 import org.junit.After;
@@ -73,7 +77,7 @@ public class StudentTest {
 
 	
 	//-------------------------------------------------------
-	// Focus su metodo getId
+	// Focus su getId
 	//-------------------------------------------------------
 	@Test
 	public void testGetId_Catch() {
@@ -83,7 +87,7 @@ public class StudentTest {
 	}
 	
 	//-------------------------------------------------------
-	// Focus su metodo getThisRange
+	// Focus su getThisRange
 	//-------------------------------------------------------
 	
 	//In assenza di range alla fine della stringa mi aspetto la restituzione di 1, valore di default assegnato a LowerRange.
@@ -95,7 +99,7 @@ public class StudentTest {
 	}
 	
 	//-------------------------------------------------------
-	// Focus su metodo getUpperRange
+	// Focus su getUpperRange
 	//-------------------------------------------------------
 	
 	//In assenza di range alla fine della stringa mi aspetto la restituzione di 1, valore di default assegnato a UpperRange.
@@ -115,7 +119,7 @@ public class StudentTest {
 	
 	
 	//-------------------------------------------------------
-	// Focus su metodo getRangeString
+	// Focus su getRangeString
 	//-------------------------------------------------------
 	@Test
 	public void testGetRangeString_NotNull() {
@@ -124,20 +128,38 @@ public class StudentTest {
 		String range=subjectParser.getRangeString();
 		assertEquals("(3/7)", range);
 	}
-	
+
 	//-------------------------------------------------------
 	// Focus su getTitle
 	//-------------------------------------------------------
 	@Test
-	public void testGetTitle_sq() {
-		SubjectParser subjectParser = new SubjectParser("2024 test [3/5");
+	public void testGetTitle_bracket() {
+		SubjectParser subjectParser = new SubjectParser("2024 test {3/5}");
+		String title=subjectParser.getTitle();
+		assertEquals("test {3/5}", title);
+	}
+	
+	@Test
+	public void testGetTitle_onlyNumber() {
+		SubjectParser subjectParser = new SubjectParser("2024 test (35)");
 		String title=subjectParser.getTitle();
 		assertEquals("test ", title);
 	}
 	
+	@Test
+	public void testGetTitle_Trap() {
+		SubjectParser subjectParser = new SubjectParser("2024 test5)");
+		String title=subjectParser.getTitle();
+		assertEquals("test5)", title);
+	}
 	
+	@Test
+	public void testGetTitle_outOfRange() {
+		SubjectParser subjectParser = new SubjectParser("2024)");
+		String titolo=subjectParser.getTitle();
+		assertNull(titolo);		
+	}
+
 	
-//	SUPPONGO CI SIA UN ECCEZIONE NON TESTABILE	SIA IN getUpperRange che in getThisRange
-	
-	
+
 }

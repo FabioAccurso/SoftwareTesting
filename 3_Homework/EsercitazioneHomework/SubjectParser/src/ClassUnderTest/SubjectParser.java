@@ -142,7 +142,7 @@ public class SubjectParser {
 			return null;
 		}
 	}
-
+/*
 	public static void main(String[] args) {
 		try {
 			if (args.length < 1) {
@@ -162,4 +162,5 @@ public class SubjectParser {
 			System.err.println(e.getMessage());
 		}
 	}
+	*/
 }
