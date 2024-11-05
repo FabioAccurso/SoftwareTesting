@@ -160,6 +160,12 @@ public class StudentTest {
 		assertNull(titolo);		
 	}
 
+	@Test
+	public void testGetTitle_doppiaParentesi() {
+		SubjectParser subjectParser = new SubjectParser("2024 test (3/5) prova (4/9)");
+		String title=subjectParser.getTitle();
+		assertEquals("test (3/5) prova ", title);
+	}
 	
 
 }
