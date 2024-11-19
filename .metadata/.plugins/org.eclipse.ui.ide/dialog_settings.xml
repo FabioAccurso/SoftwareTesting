@@ -6,6 +6,7 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="C:\Users\Fabio\Desktop\Magistrale\Software_Testing\1_Esercizi_GIT\3_Homework\Homework_in_presenza\FontInfo"/>
 			<item value="C:\Users\UTENTE\Desktop\Magistrale\SoftwareTesting\EsercitazioneHomework\SubjectParser"/>
 			<item value="C:\Users\UTENTE\Desktop\Magistrale\SoftwareTesting\2_del_Prof\06-CalendarioBlackBox"/>
 			<item value="C:\Users\UTENTE\Desktop\Magistrale\SoftwareTesting\2_del_Prof\07-CalculatorJUnit5Theories"/>
