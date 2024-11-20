@@ -60,7 +60,7 @@ public class HSLColor {
 			} else if (cMax == B) {
 				pHue = ((2 * HSLMAX) / 3) + GDelta - RDelta;
 			}
-
+			
 			if (pHue < 0) {
 				pHue = pHue + HSLMAX;
 			}
@@ -86,7 +86,7 @@ public class HSLColor {
 				Magic2 = L + S - ((L * S) + (HSLMAX / 2)) / HSLMAX;
 			}
 			Magic1 = 2 * L - Magic2;
-
+			
 			//get R, G, B; change units from HSLMAX range to RGBMAX range
 			pRed = (hueToRGB(Magic1, Magic2, H + (HSLMAX / 3)) * RGBMAX + (HSLMAX / 2)) / HSLMAX;
 			if (pRed > RGBMAX) {
