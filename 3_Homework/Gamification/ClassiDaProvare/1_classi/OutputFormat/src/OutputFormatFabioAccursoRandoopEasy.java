@@ -49,7 +49,7 @@ public class OutputFormatFabioAccursoRandoopEasy {
 		// Pulizia delle risorse o ripristino dello stato iniziale
 	}
 				
-	//Test -------------------------------------------------------------------------------------------------------------------------------
+	//Test -------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	//Test 1: Primo costruttore vuoto
 	@Test
 	public void testConstructor_1(){
@@ -225,21 +225,80 @@ public class OutputFormatFabioAccursoRandoopEasy {
  		assertEquals(4,o.getNewLineAfterNTags());
 	}
 	
-	
-	
-	/*
-	//Test :
+	//Test 23: Set e Get AttributeQuoteCharacter -> \
 	@Test
-	public void test(){
+	public void testSet_get_AttributeQuoteCharacter_1(){
  		o = new OutputFormat();
+ 		o.setAttributeQuoteCharacter('\'');
+ 		assertEquals('\'',o.getAttributeQuoteCharacter());
 	}
-	  
-	  
-	 
-	 */
 	
+	//Test 24: Set e Get AttributeQuoteCharacter -> "
+	@Test
+	public void testSet_get_AttributeQuoteCharacter_2(){
+ 		o = new OutputFormat();
+ 		o.setAttributeQuoteCharacter('"');
+ 		assertEquals('"',o.getAttributeQuoteCharacter());
+	}
 	
+	//Test 25: Set e Get AttributeQuoteCharacter -> IllegalArgumentException causata da carattere non valido
+	@Test
+	public void testSet_get_AttributeQuoteCharacter_3(){
+ 		o = new OutputFormat();
+ 		assertThrows(IllegalArgumentException.class, ()->o.setAttributeQuoteCharacter('a'));
+	}
+		
+	//Test 26: parseOptions -> array di stringhe per entrare ad ogni iterazione in un differente ramo if/else if/else, fino a visitarli tutti. Tutte le funzioni che verranno chiamate nei vari rami if sono gia' state testate.
+	//Avrei potenzialmente potuto coprire tantissime linee di codice di set e get soltanto con questo caso di test, ma ho preferito testare singolarmente ciascun metodo.
+	@Test
+	public void testparseOptions_allIf(){
+ 		o = new OutputFormat();
+ 		String[] args = {"-suppressDeclaration","-omitEncoding","-indent","  ","-indentSize","2","-expandEmpty","-encoding","UTF-8","-newlines","-lineSeparator","\n","-trimText","-padText","-xhtml","else"};
+ 		int returnValue = o.parseOptions(args, 0);
+ 		assertTrue(o.isSuppressDeclaration());
+ 		assertTrue(o.isOmitEncoding());
+ 		assertEquals("  ",o.getIndent());
+ 		assertTrue(o.isExpandEmptyElements());
+ 		assertEquals("UTF-8", o.getEncoding());
+ 		assertTrue(o.isNewlines());
+ 		assertEquals("\n", o.getLineSeparator());
+ 		assertTrue(o.isTrimText());
+ 		assertTrue(o.isPadText());
+ 		assertTrue(o.isXHTML());	
+ 		
+ 		//ovvero controllo che l'indice del for del metodo parseOptions ritornato corrisponda alla dimensione dell'array passato -1 (ovvero la posizione della stringa non riconosciuta dagli if nel ciclo for)
+ 		assertEquals(15,returnValue);
+	}
 	
+	//Test 27: parseOptions -> i > size dell'array, in questo modo non si entra nel for e viene direttamente eseguita la return della i passata per parametro
+	@Test
+	public void testparseOptions_2(){
+		o = new OutputFormat();
+		String[] args = {"a","b","c"};
+		int returnValue = o.parseOptions(args, 5);
+		
+		assertEquals(5, returnValue);
+	}
 	
+	//Test 28: createPrettyPrint -> restituisce un nuovo oggetto OutputFormat con determinate opzioni di default
+	@Test
+	public void testCreatePrettyPrint(){
+ 		o = new OutputFormat();
+ 		OutputFormat nuovo = o.createPrettyPrint();
+ 		assertEquals("  ", nuovo.getIndent());
+ 		assertTrue(nuovo.isNewlines());
+ 		assertTrue(nuovo.isTrimText());
+ 		assertTrue(nuovo.isPadText());
+	}
+	
+	//Test 29: createCompactFormat -> restituisce un nuovo oggetto OutputFormat con determinate opzioni di default
+	@Test
+	public void testCreateCompactFormat(){
+ 		o = new OutputFormat();
+ 		OutputFormat nuovo = o.createCompactFormat();
+ 		assertEquals(null, nuovo.getIndent());
+ 		assertFalse(nuovo.isNewlines());
+ 		assertTrue(nuovo.isTrimText());
+	}
 	
 }
