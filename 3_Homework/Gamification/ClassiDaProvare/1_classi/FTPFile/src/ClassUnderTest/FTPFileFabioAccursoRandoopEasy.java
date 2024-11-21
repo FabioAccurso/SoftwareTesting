@@ -10,7 +10,6 @@ Date: 18/11/2024
 import static org.junit.Assert.*;
 
 import java.util.Calendar;
-import java.util.concurrent.ThreadPoolExecutor.DiscardOldestPolicy;
 
 import org.junit.Before;
 import org.junit.After;
